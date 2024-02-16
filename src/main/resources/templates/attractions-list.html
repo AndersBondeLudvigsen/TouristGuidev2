@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Touristguide</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="overskrift">Touristguide: Danish football stadiums</h1>
+    <article>
+        <h1>Info</h1>
+        <p>Velkommen til en touristguide om danske fodboldstadioner, på denne guide kan du lære om hvor landets bedste hold konkurrerer om mesterskabet. At besøge stadionerne, hvor disse kampe finder sted, giver en unik mulighed for at opleve pulsen og lidenskaben for fodbold i Danmark.</p>
+    </article>
+    <section>
+        <h1>Links til hjemmesider</h1>
+        <ul>
+            <li><a href="https://da.wikipedia.org/wiki/Odense_Stadion">Nature Energy Park(OB)</a> <img
+                    src="../images/Ob.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Br%C3%B8ndby_Stadion">Brøndby stadion(BIF)</a> <img
+                    src="../images/Brøndby.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Parken">Parken(FCK)</a><img src="../images/Parken.png"/></li>
+            <li><a href="https://en.wikipedia.org/wiki/Right_to_Dream_Park">Right to dream park(FCN)</a> <img
+                    src="../images/Fcn.png"/></li>
+        </ul>
+    </section>
+    <nav>
+        <table>
+            <thead>
+            <tr>
+                <th th:text="${name}">Stadium Name</th>
+                <th th:text="${description}">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="touristAttraction : ${touristAttractionList}">
+                <td th:text="${touristAttraction.name}">Name</td>
+                <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
+                <td >
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </nav>
+
+    <footer>
+        Kontakt info
+        <ul>
+            <li> Email: kontakt@mail.dk
+            <li>Tlf: 12345678
+        </ul>
+    </footer>
+</div>
+</body>
+</html>
