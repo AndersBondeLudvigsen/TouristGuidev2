@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,20 +13,6 @@
         <h1>Info</h1>
         <p>Velkommen til en touristguide om danske fodboldstadioner, på denne guide kan du lære om hvor landets bedste hold konkurrerer om mesterskabet. At besøge stadionerne, hvor disse kampe finder sted, giver en unik mulighed for at opleve pulsen og lidenskaben for fodbold i Danmark.</p>
     </article>
-    <section>
-        <h1>Links til hjemmesider</h1>
-        <ul>
-            <li><a href="https://da.wikipedia.org/wiki/Odense_Stadion">Nature Energy Park(OB)</a>
-                <img src="images/Ob.png"/></li>
-            <li><a href="https://da.wikipedia.org/wiki/Br%C3%B8ndby_Stadion">Brøndby stadion(BIF)</a> <img
-                    src="images/Brøndby.png"/></li>
-            <li><a href="https://da.wikipedia.org/wiki/Parken">Parken(FCK)</a><img src="/images/Parken.png"/></li>
-            <li><a href="https://en.wikipedia.org/wiki/Right_to_Dream_Park">Right to dream park(FCN)</a> <img src="/images/Fcn.png"/></li>
-
-
-
-        </ul>
-    </section>
     <nav>
         <table>
             <thead>
@@ -37,27 +22,61 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="touristAttraction : ${touristAttractionList}">
-                <td th:text="${touristAttraction.name}">Name</td>
-                <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
-                <td>
-                   <a th:href="'attractions/' + ${touristAttraction.name} + '/update'">
-                       <button type="button"> Opdater</button>
-                   </a>
-                </td>
-                <td>
-                    <a th:href="@{'/attractions/' + ${touristAttraction.name}+ '/tags'}">
-                    <button type="button">Tags</button>
-                    </a>
-                </td>
+            <section>
+                <h1>Fodboldstadioner</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Stadion</th>
+                        <th>Beskrivelse</th>
+                        <th>Opdater</th>
+                        <th>Tags</th>
+                        <th>Slet</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="touristAttraction : ${touristAttractionList}">
+                        <td th:text="${touristAttraction.name}">Name</td>
+                        <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
+                        <td>
+                            <a th:href="'attractions/' + ${touristAttraction.name} + '/update'">
+                                <button type="button"> Opdater</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/attractions/' + ${touristAttraction.name}+ '/tags'}">
+                                <button type="button">Tags</button>
 
-            </tr>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{'attractions/' + ${touristAttraction.name} + '/delete'}">
+                                <button type="button">Slet</button>
+                            </a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
             </tbody>
         </table>
         <form action="/attractions/create" method="get">
             <button type="submit">Add attraction</button>
         </form>
     </nav>
+    <section>
+        <h1>Links til hjemmesider</h1>
+        <ul>
+            <li><a href="https://da.wikipedia.org/wiki/Odense_Stadion">Nature Energy Park(OB)</a>
+                <img src="images/Ob.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Br%C3%B8ndby_Stadion">Brøndby stadion(BIF)</a> <img
+                    src="images/Brøndby.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Parken">Parken(FCK)</a><img src="/images/Parken.png"/></li>
+            <li><a href="https://en.wikipedia.org/wiki/Right_to_Dream_Park">Right to dream park(FCN)</a> <img src="/images/Fcn.png"/></li>
+        </ul>
+    </section>
 
     <footer>
         Kontakt info
