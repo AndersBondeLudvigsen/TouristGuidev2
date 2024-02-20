@@ -5,7 +5,22 @@
     <title>Update</title>
 </head>
 <body>
+<form action="/attractions/update" th:object="${touristattraction}" method="post">
+    <p>
+        <label>Name(kan ikke ændres):</label>
+        <input type="text" name="name" th:value="${touristAttraction.name}" readonly/>
+    </p>
+    <p>
+        <label>Description:</label>
+        <input type="text" name="description" th:field="${touristAttraction.description}"/>
+    </p>
+    <p>
+        <label>Tags:</label>
+        <input type="text" name="tags" th:field="${touristAttraction.tags}"/>
+    </p>
 
-
+    </p>
+    <input type="submit" value="update" />
+</form>
 </body>
 </html>

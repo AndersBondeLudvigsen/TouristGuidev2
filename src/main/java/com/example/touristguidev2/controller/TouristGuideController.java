@@ -40,13 +40,13 @@ public class TouristGuideController {
     }
 
     @GetMapping("{name}/update")
-    public String showUpdateAttraction(@PathVariable String name, Model model) {
+    public String showUpdateAttraction(@PathVariable("name") String name, Model model) {
         TouristAttraction touristAttraction = touristGuideService.getTouristAttraction(name);
-        model.addAttribute("touristattraction", touristAttraction);
+        model.addAttribute("touristAttraction", touristAttraction);
         return "update-attraction";
     }
     @PostMapping("update")
-    public String updateProduct(TouristAttraction touristAttraction) {
+    public String updateProduct(@ModelAttribute TouristAttraction touristAttraction) {
         touristGuideService.updateTouristAttraction(touristAttraction);
         return "redirect:/attractions";
     }

@@ -41,10 +41,9 @@
                 <td th:text="${touristAttraction.name}">Name</td>
                 <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
                 <td>
-                    <form action="/attractions/{name}/update" method="get">
-                        <input type="hidden" name="name" th:value="${touristAttraction.name}" />
-                        <button type="submit">Update</button>
-                    </form>
+                   <a th:href="'attractions/' + ${touristAttraction.name} + '/update'">
+                       <button type="button"> Opdater</button>
+                   </a>
                 </td>
                 <td>
                     <a th:href="@{'/attractions/' + ${touristAttraction.name}+ '/tags'}">
