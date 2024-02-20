@@ -47,11 +47,11 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/attractions/{name}/tags" method="get">
-                        <input type="hidden" name="name" th:value="${touristAttraction.name}" />
-                        <button type="submit">Tags</button>
-                    </form>
+                    <a th:href="@{'/attractions/' + ${touristAttraction.name}+ '/tags'}">
+                    <button type="button">Tags</button>
+                    </a>
                 </td>
+
             </tr>
             </tbody>
         </table>
