@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attraction Tags</title>
+</head>
+<body>
+<h1 th:text="${name}">Attraction Name</h1>
+<h2>Tags for the Attraction</h2>
+<ul>
+    <!-- Iterate over tags using Thymeleaf -->
+    <li th:each="tag : ${tags}" th:text="${tag}">Tag</li>
+</ul>
+<!-- Button to go back to /attractions -->
+<form action="/attractions" method="get">
+    <button type="submit">Back to Attractions</button>
+</form>
+</body>
+</html>

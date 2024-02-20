@@ -44,7 +44,7 @@ public class TouristAttraction {
     public ArrayList<String> getTags(){
         return tags;
     }
-
+//slet
     public TouristAttraction setTouristAttraction(TouristAttraction touristAttraction){
         setName(touristAttraction.getName());
         setDescription(touristAttraction.getDescription());

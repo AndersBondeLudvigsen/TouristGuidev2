@@ -1,0 +1,67 @@
+/* stylesheet.css */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.overskrift {
+    grid-column: span 2;
+    text-align: center;
+}
+
+.info-bar {
+    grid-column: span 2;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.links {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.links li {
+    margin-bottom: 10px;
+}
+
+.attractions {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.attractions table {
+    width: 100%;
+}
+
+.attractions th, .attractions td {
+    padding: 10px;
+}
+
+.footer {
+    grid-column: span 2;
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+button {
+    background-color: lightblue;
+    margin-bottom: 20px;
+}

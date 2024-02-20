@@ -42,7 +42,7 @@ public class TouristGuideRepository {
     public void addTouristAttraction (TouristAttraction touristAttraction){
         touristAttractions.add(touristAttraction);
     }
-
+//ret
     public void deleteTouristAttraction(String name) {
         int foundIndex = -1;
         TouristAttraction returnTouristAttraction = new TouristAttraction("Not found","Not found");

@@ -9,23 +9,22 @@
 
 <div class="container">
     <h1 class="overskrift">Touristguide: Danish football stadiums</h1>
-    <article>
-        <h1>Info</h1>
-        <p>Velkommen til en touristguide om danske fodboldstadioner, på denne guide kan du lære om hvor landets bedste hold konkurrerer om mesterskabet. At besøge stadionerne, hvor disse kampe finder sted, giver en unik mulighed for at opleve pulsen og lidenskaben for fodbold i Danmark.</p>
-    </article>
-    <section>
+    <div class="info-bar">
+        <article>
+            <h1>Info</h1>
+            <p>Velkommen til en touristguide om danske fodboldstadioner, på denne guide kan du lære om hvor landets bedste hold konkurrerer om mesterskabet. At besøge stadionerne, hvor disse kampe finder sted, giver en unik mulighed for at opleve pulsen og lidenskaben for fodbold i Danmark.</p>
+        </article>
+    </div>
+    <section class="links">
         <h1>Links til hjemmesider</h1>
         <ul>
-            <li><a href="https://da.wikipedia.org/wiki/Odense_Stadion">Nature Energy Park(OB)</a> <img
-                    src="../images/Ob.png"/></li>
-            <li><a href="https://da.wikipedia.org/wiki/Br%C3%B8ndby_Stadion">Brøndby stadion(BIF)</a> <img
-                    src="../images/Brøndby.png"/></li>
-            <li><a href="https://da.wikipedia.org/wiki/Parken">Parken(FCK)</a><img src="../images/Parken.png"/></li>
-            <li><a href="https://en.wikipedia.org/wiki/Right_to_Dream_Park">Right to dream park(FCN)</a> <img
-                    src="../images/Fcn.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Odense_Stadion">Nature Energy Park(OB)</a><img src="images/Ob.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Br%C3%B8ndby_Stadion">Brøndby stadion(BIF)</a> <img src="images/Brøndby.png"/></li>
+            <li><a href="https://da.wikipedia.org/wiki/Parken">Parken(FCK)</a><img src="/images/Parken.png"/></li>
+            <li><a href="https://en.wikipedia.org/wiki/Right_to_Dream_Park">Right to dream park(FCN)</a> <img src="/images/Fcn.png"/></li>
         </ul>
     </section>
-    <nav>
+    <nav class="attractions">
         <table>
             <thead>
             <tr>
@@ -37,18 +36,31 @@
             <tr th:each="touristAttraction : ${touristAttractionList}">
                 <td th:text="${touristAttraction.name}">Name</td>
                 <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
-                <td >
+                <td>
+                    <form action="/attractions/{name}/update" method="get">
+                        <input type="hidden" name="name" th:value="${touristAttraction.name}" />
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/attractions/{name}/tags" method="get">
+                        <input type="hidden" name="name" th:value="${touristAttraction.name}" />
+                        <button type="submit">Tags</button>
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
+        <form action="/attractions/create" method="get">
+            <button type="submit">Add attraction</button>
+        </form>
     </nav>
 
     <footer>
         Kontakt info
         <ul>
-            <li> Email: kontakt@mail.dk
-            <li>Tlf: 12345678
+            <li>Email: kontakt@mail.dk</li>
+            <li>Tlf: 12345678</li>
         </ul>
     </footer>
 </div>
