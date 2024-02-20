@@ -16,9 +16,9 @@
     </p>
     <p>
         <label>Tags:</label>
-        <input type="text" name="tags" th:field="${touristAttraction.tags}"/>
-    </p>
-
+    <div th:each="tag : ${touristAttraction.tags}">
+        <input type="text" th:value="${tag}" name="tags"/>
+    </div>
     </p>
     <input type="submit" value="update" />
 </form>
