@@ -9,7 +9,7 @@
 
 <div class="container">
     <h1 class="overskrift">Touristguide: Danish football stadiums</h1>
-    <div class="info-bar">
+    <div class="info">
         <article>
             <h1>Info</h1>
             <p>Velkommen til en touristguide om danske fodboldstadioner, på denne guide kan du lære om hvor landets bedste hold konkurrerer om mesterskabet. At besøge stadionerne, hvor disse kampe finder sted, giver en unik mulighed for at opleve pulsen og lidenskaben for fodbold i Danmark.</p>
@@ -30,6 +30,7 @@
             <tr>
                 <th th:text="${name}">Stadium Name</th>
                 <th th:text="${description}">Description</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -41,8 +42,6 @@
                         <input type="hidden" name="name" th:value="${touristAttraction.name}" />
                         <button type="submit">Update</button>
                     </form>
-                </td>
-                <td>
                     <form action="/attractions/{name}/tags" method="get">
                         <input type="hidden" name="name" th:value="${touristAttraction.name}" />
                         <button type="submit">Tags</button>
@@ -55,14 +54,13 @@
             <button type="submit">Add attraction</button>
         </form>
     </nav>
-
-    <footer>
-        Kontakt info
-        <ul>
-            <li>Email: kontakt@mail.dk</li>
-            <li>Tlf: 12345678</li>
-        </ul>
-    </footer>
 </div>
+<footer>
+    Kontakt info
+    <ul>
+        <li>Email: kontakt@mail.dk</li>
+        <li>Tlf: 12345678</li>
+    </ul>
+</footer>
 </body>
 </html>
