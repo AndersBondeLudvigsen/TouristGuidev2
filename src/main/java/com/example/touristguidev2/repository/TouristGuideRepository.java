@@ -61,7 +61,7 @@ public class TouristGuideRepository {
     public ArrayList<String> getTags(String name){
         int i = 0;
         while (i < touristAttractions.size()){
-            if (name.equals(touristAttractions.get(i).getName())) {
+            if (name.toLowerCase().equals(touristAttractions.get(i).getName().toLowerCase())) {
                 return touristAttractions.get(i).getTags();
             }
             i++;

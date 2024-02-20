@@ -50,10 +50,11 @@ public class TouristGuideController {
         touristGuideService.updateTouristAttraction(touristAttraction);
         return "redirect:/attractions";
     }
-    @GetMapping ("{name}/tags")
+    @GetMapping("/{name}/tags")
     public String getTags(@PathVariable("name") String name ,Model model){
-        model.addAttribute(touristGuideService.getTags(name));
-        return "attractions-tags";
+        model.addAttribute("name", name);
+        model.addAttribute("tags", touristGuideService.getTags(name));
+        return "attraction-tags";
     }
 
 
