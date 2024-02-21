@@ -45,7 +45,7 @@ public class TouristGuideRepository {
 //ret
     public void deleteTouristAttraction(String name) {
         int foundIndex = -1;
-        TouristAttraction returnTouristAttraction = new TouristAttraction("Not found","Not found");
+        TouristAttraction returnTouristAttraction = new TouristAttraction();
 
         for (int i = 0; i< touristAttractions.size(); i++) {
             if (name.equals(touristAttractions.get(i).getName())){
