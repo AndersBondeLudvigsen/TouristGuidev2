@@ -13,12 +13,13 @@
     <p>
         <label>Description:</label>
         <input type="text" name="description" th:field="*{description}"/>
-</p>
+    </p>
     <p>
         <label>Tags:</label>
-        <input type="text" name="tags" th:field="*{tags}"/>
-    </p>
-
+    <div th:each="tag : ${tagsList}">
+        <input type="checkbox" name="tags" th:id="'tag_' + ${tag}" th:value="${tag}" />
+        <label th:for="'tag_' + ${tag}" th:text="${tag}"></label><br>
+    </div>
     </p>
     <input type="submit" value="create" />
 </form>

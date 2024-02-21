@@ -24,6 +24,7 @@ public class TouristGuideController {
     @GetMapping("create")
     public String createTouristAttraction(Model model){
         model.addAttribute("touristattraction", new TouristAttraction());
+        model.addAttribute("tagsList", touristGuideService.getTagsList());
         return "create-attraction";
     }
 

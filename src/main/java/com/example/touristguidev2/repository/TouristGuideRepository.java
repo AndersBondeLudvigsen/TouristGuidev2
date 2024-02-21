@@ -1,6 +1,7 @@
 package com.example.touristguidev2.repository;
 
 
+import com.example.touristguidev2.model.Tags;
 import com.example.touristguidev2.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,7 @@ public class TouristGuideRepository {
 
     public TouristAttraction getTouristAttraction(String name){
         for (TouristAttraction touristAttraction: touristAttractions) {
-            if (touristAttraction.getName().equals(name)){
+            if (touristAttraction.getName().equalsIgnoreCase(name)){
                 return touristAttraction;
             }
         }
@@ -52,7 +53,6 @@ public class TouristGuideRepository {
 
     public void deleteTouristAttraction(String name) {
         int foundIndex = -1;
-        TouristAttraction returnTouristAttraction = new TouristAttraction();
 
         for (int i = 0; i< touristAttractions.size(); i++) {
             if (name.equals(touristAttractions.get(i).getName())){
@@ -60,7 +60,6 @@ public class TouristGuideRepository {
             }
         }
         if(foundIndex != -1) {
-            returnTouristAttraction = touristAttractions.get(foundIndex);
             touristAttractions.remove(foundIndex);
         }
     }
