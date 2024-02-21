@@ -51,4 +51,8 @@ public class TouristAttraction {
         return touristAttraction;
 
     }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
 }

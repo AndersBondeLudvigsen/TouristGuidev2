@@ -38,21 +38,26 @@ public class TouristGuideController {
         touristGuideService.deleteTouristAttraction(name);
         return "redirect:/attractions";
     }
-
     @GetMapping("{name}/update")
     public String showUpdateAttraction(@PathVariable("name") String name, Model model) {
         TouristAttraction touristAttraction = touristGuideService.getTouristAttraction(name);
         model.addAttribute("touristAttraction", touristAttraction);
+        model.addAttribute("tagsList", touristGuideService.getTagsList());
         return "update-attraction";
     }
+
     @PostMapping("update")
-    public String updateProduct(@ModelAttribute TouristAttraction touristAttraction) {
-        touristGuideService.updateTouristAttraction(touristAttraction);
+    public String updateProduct(@ModelAttribute("touristAttraction") TouristAttraction updatedAttraction) {
+        TouristAttraction existingAttraction = touristGuideService.getTouristAttraction(updatedAttraction.getName());
+        existingAttraction.setDescription(updatedAttraction.getDescription());
+        existingAttraction.setTags(updatedAttraction.getTags());
+        touristGuideService.updateTouristAttraction(existingAttraction);
         return "redirect:/attractions";
     }
-    @GetMapping(value = "{name}/tags")
-    public String getTags(@PathVariable String name, Model model){
 
+
+    @GetMapping(value = "{name}/tags")
+        public String getTags(@PathVariable String name, Model model){
         model.addAttribute("attractionName", name);
         model.addAttribute("tags", touristGuideService.getTags(name));
         return "attraction-tags";
