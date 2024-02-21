@@ -40,7 +40,7 @@
                         <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
                         <td>
                             <a th:href="'attractions/' + ${touristAttraction.name} + '/update'">
-                                <button type="button"> Opdater</button>
+                                <button class="opdater" type="button"> Opdater</button>
                             </a>
                         </td>
                         <td>
@@ -51,7 +51,7 @@
                         </td>
                         <td>
                             <a th:href="@{'attractions/' + ${touristAttraction.name} + '/delete'}">
-                                <button type="button">Slet</button>
+                                <button class="slet" type="button">Slet</button>
                             </a>
 
                         </td>
