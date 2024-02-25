@@ -15,12 +15,11 @@ public class TouristGuideRepository {
     public TouristGuideRepository() {
         tagsList = new ArrayList<>(List.of("Billige øl", "Gode pølser", "Sure fans", "Dårlig bane", "God bane", "Flot stadion"));
         touristAttractions = new ArrayList<>(List.of(
-                new TouristAttraction("brøndby Stadion", "God stemning og gode pølser", new ArrayList<>(List.of("Gode pølser", "Sure fans"))),
-                new TouristAttraction("nature Energy Park", "OBs Stadion. God pølsemix. Forvent sure fans", new ArrayList<>(List.of("God bane", "Flot stadion"))),
-                new TouristAttraction("parken", "Største danske fodboldstadion, Tag kun derind når Danmarks landshold spiller", new ArrayList<>(List.of("Dårllig bane", "Sure fans"))),
-                new TouristAttraction("right to dream park", "Ingen fans, men okay fodbold. DÅRLIG BANE", new ArrayList<>(List.of("Dårlig bane", "Flot stadion"))),
-                new TouristAttraction("h", "h", new ArrayList<>(List.of("Billige øl"))
-                )));
+                new TouristAttraction("Brøndby Stadion", "God stemning og gode pølser", new ArrayList<>(List.of("Gode pølser", "Sure fans"))),
+                new TouristAttraction("Nature Energy Park", "OBs Stadion. God pølsemix. Forvent sure fans", new ArrayList<>(List.of("God bane", "Flot stadion"))),
+                new TouristAttraction("Parken", "Største danske fodboldstadion, Tag kun derind når Danmarks landshold spiller", new ArrayList<>(List.of("Dårllig bane", "Sure fans"))),
+                new TouristAttraction("Right to dream park", "Ingen fans, men okay fodbold. DÅRLIG BANE", new ArrayList<>(List.of("Dårlig bane", "Flot stadion")))
+                ));
     }
 
     public List<String> getTagsList() {

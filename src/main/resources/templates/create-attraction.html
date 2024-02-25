@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <form action="/attractions/create" th:object="${touristattraction}" method="post">
@@ -21,7 +22,12 @@
         <label th:for="'tag_' + ${tag}" th:text="${tag}"></label><br>
     </div>
     </p>
-    <input type="submit" value="create" />
+    <input type="submit" value="create" class="btn btn-primary"/>
 </form>
+<form action="/attractions" method="get">
+    <button class="slet btn btn-danger" type="submit">Fortryd og gå tilbage</button>
+</form>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

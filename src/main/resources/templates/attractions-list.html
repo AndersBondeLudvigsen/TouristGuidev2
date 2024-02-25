@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Touristguide</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/stylesheet.css}">
+    <link rel=”icon” href="favicon.ico">
 </head>
 <body>
-
 <div class="container">
     <h1 class="overskrift">Touristguide: Danish football stadiums</h1>
     <article>
@@ -40,18 +41,18 @@
                         <td th:text="${touristAttraction.description}">Tourist Attraction Description</td>
                         <td>
                             <a th:href="'attractions/' + ${touristAttraction.name} + '/update'">
-                                <button class="opdater" type="button"> Opdater</button>
+                                <button class="opdater btn btn-success" type="button"> Opdater</button>
                             </a>
                         </td>
                         <td>
                             <a th:href="@{'/attractions/' + ${touristAttraction.name}+ '/tags'}">
-                                <button type="button">Tags</button>
+                                <button class="btn btn-primary" type="button">Tags</button>
 
                             </a>
                         </td>
                         <td>
                             <a th:href="@{'attractions/' + ${touristAttraction.name} + '/delete'}">
-                                <button class="slet" type="button">Slet</button>
+                                <button class="slet btn btn-danger" type="button">Slet</button>
                             </a>
 
                         </td>
@@ -63,7 +64,7 @@
             </tbody>
         </table>
         <form action="/attractions/create" method="get">
-            <button type="submit">Add attraction</button>
+            <button class="btn btn-info" type="submit">Add attraction</button>
         </form>
     </nav>
     <section>
@@ -81,10 +82,11 @@
     <footer>
         Kontakt info
         <ul>
-            <li> Email: kontakt@mail.dk
-            <li>Tlf: 12345678
+            <li> Email:  <a href="mailto:fodboldstadioner@gmail.com">fodboldstadioner@gmail.com</a> </li>
+            <li>Tlf: 48014801
         </ul>
     </footer>
 </div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

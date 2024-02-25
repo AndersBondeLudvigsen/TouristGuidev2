@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1 th:text="${attractionName}">Attraction Name</h1>
-<h2>Tags for the Attraction</h2>
-<ul>
+<h4>Tags for the Attraction</h4>
+<ol>
     <li th:each="tag : ${tags}" th:text="${tag}">Tag</li>
-</ul>
+</ol>
 <form action="/attractions" method="get">
     <button type="submit">Back to Attractions</button>
 </form>
