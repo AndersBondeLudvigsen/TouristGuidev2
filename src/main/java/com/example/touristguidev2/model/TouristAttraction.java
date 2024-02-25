@@ -7,12 +7,6 @@ public class TouristAttraction {
     private String description;
     private ArrayList<String> tags;
 
-    public TouristAttraction(String name, String description){
-        this.name = name;
-        this.description = description;
-        tags = new ArrayList<>();
-    }
-
     public TouristAttraction(String name, String description, ArrayList<String> tags){
         this.name = name;
         this.description = description;

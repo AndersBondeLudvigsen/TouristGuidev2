@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Attraction Tags</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <h1 th:text="${attractionName}">Attraction Name</h1>
@@ -11,7 +12,9 @@
     <li th:each="tag : ${tags}" th:text="${tag}">Tag</li>
 </ol>
 <form action="/attractions" method="get">
-    <button type="submit">Back to Attractions</button>
+    <button class="slet btn btn-danger" type="submit">Gå tilbage til startsiden</button>
 </form>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
