@@ -36,7 +36,7 @@ class TouristGuideRepositoryTest {
 
         String expected = "test";
         String actual = touristGuideRepository.getTouristAttraction("Parken").getDescription();
-        
+
         assertEquals(expected,actual);
 
 
