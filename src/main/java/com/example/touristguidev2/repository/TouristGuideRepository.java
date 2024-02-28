@@ -50,7 +50,6 @@ public class TouristGuideRepository {
 
     public void deleteTouristAttraction(String name) {
         int foundIndex = -1;
-
         for (int i = 0; i< touristAttractions.size(); i++) {
             if (name.equals(touristAttractions.get(i).getName())){
                 foundIndex = i;
