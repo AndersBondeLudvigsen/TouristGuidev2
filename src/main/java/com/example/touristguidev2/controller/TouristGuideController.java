@@ -48,7 +48,7 @@ public class TouristGuideController {
     }
 
     @PostMapping("update")
-    public String updateProduct(@ModelAttribute("touristAttraction") TouristAttraction updatedAttraction) {
+    public String updateTouristAttraction(@ModelAttribute("touristAttraction") TouristAttraction updatedAttraction) {
         TouristAttraction existingAttraction = touristGuideService.getTouristAttraction(updatedAttraction.getName());
         existingAttraction.setDescription(updatedAttraction.getDescription());
         existingAttraction.setTags(updatedAttraction.getTags());
