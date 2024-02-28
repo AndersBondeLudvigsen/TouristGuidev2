@@ -32,6 +32,14 @@ class TouristGuideRepositoryTest {
     @Test
     void updateTouristAttraction() {
 
+        touristGuideRepository.updateTouristAttraction(new TouristAttraction("Parken", "test", new ArrayList<>(List.of("test"))));
+
+        String expected = "test";
+        String actual = touristGuideRepository.getTouristAttraction("Parken").getDescription();
+        
+        assertEquals(expected,actual);
+
+
     }
 
     @Test
@@ -65,5 +73,9 @@ class TouristGuideRepositoryTest {
 
     @Test
     void getTouristAttractions() {
+        int expected = 4;
+        int actual = touristGuideRepository.getTouristAttractions().size();
+        assertEquals(expected,actual);
+
     }
 }
