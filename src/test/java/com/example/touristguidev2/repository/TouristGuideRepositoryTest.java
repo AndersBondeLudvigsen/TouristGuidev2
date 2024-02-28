@@ -36,15 +36,32 @@ class TouristGuideRepositoryTest {
 
     @Test
     void addTouristAttraction() {
+        TouristAttraction touristAttractionTest = new TouristAttraction("Anders", "Anders plads" , new ArrayList<>(List.of("Dårlig bane")));
+        touristGuideRepository.getTouristAttractions().add(touristAttractionTest);
+
+        int expected = 5;
+        int actual = touristGuideRepository.getTouristAttractions().size();
+
+        assertEquals(expected, actual);
     }
 
     @Test
     void deleteTouristAttraction() {
+        touristGuideRepository.deleteTouristAttraction("Parken");
+
+        int expected = 3;
+        int actual = touristGuideRepository.getTouristAttractions().size();
+
+        assertEquals(expected, actual);
     }
 
     @Test
     void getTags() {
+        int expected = 2;
+        int actual =touristGuideRepository.getTouristAttraction("parken").getTags().size();
+        assertEquals(expected,actual);
     }
+
 
     @Test
     void getTouristAttractions() {
