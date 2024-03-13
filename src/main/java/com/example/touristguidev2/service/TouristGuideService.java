@@ -39,11 +39,11 @@ public class TouristGuideService {
     }
 
     public List<TouristAttraction> getTouristAttractions(){
-        return touristGuideRepository.getTouristAttractions();
+        return touristGuideRepositoryDB.getTouristAttractions();
     }
 
     public List<String> getTagsList(){
-        return touristGuideRepository.getTagsList();
+        return touristGuideRepositoryDB.getTagsList();
     }
 }
 

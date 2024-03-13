@@ -51,3 +51,9 @@ jobs:
           slot-name: 'Production'
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED77CF469A2E45D3A3B1CE240BB6C3F1 }}
+
+      - name: Build with Maven
+        env:
+          JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
+          JDBC_USERNAME: ${{secrets.JDBC_USERNAME}}
+          JDBC_PASSWORD: ${{secrets.JDBC_PASSWORD}}
