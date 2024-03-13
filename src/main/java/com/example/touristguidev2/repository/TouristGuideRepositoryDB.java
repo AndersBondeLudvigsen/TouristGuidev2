@@ -60,7 +60,7 @@ public class TouristGuideRepositoryDB {
             while(rs.next()) {
                 String name = rs.getString(2);
                 String description = rs.getString(3);
-                touristAttractions.add(new TouristAttraction(name,description));
+                touristAttractions.add(new TouristAttraction(name,description, new ArrayList<>(List.of("hej"))));
             }
             return touristAttractions;
         }
