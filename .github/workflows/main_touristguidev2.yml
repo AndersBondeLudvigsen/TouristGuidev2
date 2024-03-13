@@ -22,6 +22,10 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
+        env:
+          JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
+          JDBC_USERNAME: ${{secrets.JDBC_USERNAME}}
+          JDBC_PASSWORD: ${{secrets.JDBC_PASSWORD}}
         run: mvn clean install
 
       - name: Upload artifact for deployment job
@@ -52,8 +56,5 @@ jobs:
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED77CF469A2E45D3A3B1CE240BB6C3F1 }}
 
-      - name: Build with Maven
-        env:
-          JDBC_DATABASE_URL: ${{secrets.JDBC_DATABASE_URL}}
-          JDBC_USERNAME: ${{secrets.JDBC_USERNAME}}
-          JDBC_PASSWORD: ${{secrets.JDBC_PASSWORD}}
+
+
