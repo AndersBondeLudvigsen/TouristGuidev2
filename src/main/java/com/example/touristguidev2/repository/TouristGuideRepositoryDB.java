@@ -72,14 +72,22 @@ public class TouristGuideRepositoryDB {
 
 
             while(rs.next()) {
-                String name = rs.getString(2);
-                String description = rs.getString(3);
-                touristAttractions.add(new TouristAttraction(name,description, new ArrayList<>(List.of("hej"))));
+                String ANAME = rs.getString("ANAME");
+                String ADESCRIPTION = rs.getString("ADESCRIPTION");
+                String TDESCRIPTION = rs.getString("TDESCRIPTION");
+
+                if (ANAME.equals(currentAname)){
+                    currentTouristAttraction.addTag(TDESCRIPTION);
+                } else {
+                    currentTouristAttraction = new TouristAttraction(ANAME, ADESCRIPTION, new ArrayList<>(List.of(TDESCRIPTION)));
+                    currentAname = ANAME;
+                }
+                touristAttractions.add(currentTouristAttraction);
             }
-            return touristAttractions;
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
+        return touristAttractions;
         }
 }
