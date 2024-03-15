@@ -57,14 +57,12 @@ public class TouristGuideRepositoryDB {
 
     public List<TouristAttraction> getTouristAttractions() {
         List<TouristAttraction> touristAttractions = new ArrayList<>();
-        try (Connection con = ConnectionManager.getConnection(db_url,uid,pwd)){
-           String SQL = "SELECT touristattraction.aname, touristattraction.adescription, tag.tdescription " +
-                   "from touristattaction_tags" +
-                   " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
-                   " join tag on touristattaction_tags.TAGSID = tag.TAGSID;";
-
-
-            PreparedStatement psts = con.prepareStatement(SQL);
+        String SQL = "SELECT touristattraction.aname, touristattraction.adescription, tag.tdescription " +
+                "from touristattaction_tags" +
+                " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
+                " join tag on touristattaction_tags.TAGSID = tag.TAGSID;";
+        Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+        try (PreparedStatement psts = con.prepareStatement(SQL)){
             ResultSet rs = psts.executeQuery(SQL);
 
             String currentAname = "";
