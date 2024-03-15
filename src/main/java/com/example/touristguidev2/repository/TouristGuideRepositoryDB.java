@@ -81,8 +81,8 @@ public class TouristGuideRepositoryDB {
                 } else {
                     currentTouristAttraction = new TouristAttraction(ANAME, ADESCRIPTION, new ArrayList<>(List.of(TDESCRIPTION)));
                     currentAname = ANAME;
+                    touristAttractions.add(currentTouristAttraction);
                 }
-                touristAttractions.add(currentTouristAttraction);
             }
         }
         catch (SQLException e){
