@@ -43,7 +43,11 @@ public class TouristGuideRepositoryDB {
         }
     }
 
-    public void updateTouristAttraction(TouristAttraction touristAttractionUpdated) {}
+    public TouristAttraction updateTouristAttraction(TouristAttraction touristAttractionUpdated) {
+        int rows = 0;
+        String SQL = "UPDATE TOURISTATTRACTION SET touristattraction = ? WHERE ID = ? ;";
+        return null;
+    }
 
     public void addTouristAttraction (TouristAttraction touristAttraction){}
 
@@ -54,9 +58,19 @@ public class TouristGuideRepositoryDB {
     public List<TouristAttraction> getTouristAttractions() {
         List<TouristAttraction> touristAttractions = new ArrayList<>();
         try (Connection con = ConnectionManager.getConnection(db_url,uid,pwd)){
-            String SQL = "SELECT * FROM touristattraction;";
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(SQL);
+           String SQL = "SELECT touristattraction.aname, touristattraction.adescription, tag.tdescription " +
+                   "from touristattaction_tags" +
+                   " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
+                   " join tag on touristattaction_tags.TAGSID = tag.TAGSID;";
+
+
+            PreparedStatement psts = con.prepareStatement(SQL);
+            ResultSet rs = psts.executeQuery(SQL);
+
+            String currentAname = "";
+            TouristAttraction currentTouristAttraction = null;
+
+
             while(rs.next()) {
                 String name = rs.getString(2);
                 String description = rs.getString(3);
