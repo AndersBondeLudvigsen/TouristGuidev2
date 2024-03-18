@@ -31,7 +31,7 @@ public class TouristGuideRepositoryDB {
             String SQL = "SELECT touristattraction.aname, touristattraction.adescription, tag.tdescription " +
                     "from touristattaction_tags" +
                     " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
-                    " join tag on touristattaction_tags.TAGSID = tag.TAGSID where aname = ?;";
+                    " join tag on touristattaction_tags.TAGSID = tag.TAGSID where touristattraction.aname = ?;";
 
             Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
             try (PreparedStatement psts = con.prepareStatement(SQL)){
@@ -75,7 +75,8 @@ public class TouristGuideRepositoryDB {
         String SQL = "SELECT tag.tdescription " +
                 "from touristattaction_tags" +
                 " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
-                " join tag on touristattaction_tags.TAGSID = tag.TAGSID where name = ?;";
+                " join tag on touristattaction_tags.TAGSID = tag.TAGSID " +
+                "WHERE touristattraction.aname = ?;";
         Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
         try (PreparedStatement psts = con.prepareStatement(SQL)){
         psts.setString(1, name);
