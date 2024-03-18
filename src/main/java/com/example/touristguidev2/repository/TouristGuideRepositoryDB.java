@@ -66,9 +66,25 @@ public class TouristGuideRepositoryDB {
         return null;
     }
 
-    public void addTouristAttraction (TouristAttraction touristAttraction){}
+    public void addTouristAttraction (TouristAttraction touristAttraction){
 
-    public void deleteTouristAttraction(String name){}
+    }
+
+    public void deleteTouristAttraction(String name) {
+        String SQL1  = "DELETE FROM TOURISTATTACTION_TAGS WHERE TOURISTID = (SELECT TOURISTID FROM TOURISTATTRACTION WHERE ANAME = ?);";
+        String SQL2 = "DELETE FROM TOURISTATTRACTION WHERE ANAME = ?;";
+        Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+        try (PreparedStatement psts1 = con.prepareStatement(SQL1);
+                PreparedStatement psts2 = con.prepareStatement(SQL2)){
+            psts1.setString(1,name);
+            psts2.setString(1,name);
+            int rowsAffected1 = psts1.executeUpdate();
+            int rowsAffected2 = psts2.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public ArrayList<String> getTags(String name){
         ArrayList<String> tags = new ArrayList<>();
