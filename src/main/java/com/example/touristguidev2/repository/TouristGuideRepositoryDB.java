@@ -28,19 +28,35 @@ public class TouristGuideRepositoryDB {
 
     public TouristAttraction getTouristAttraction(String name){
         TouristAttraction touristAttraction = null;
-        try (Connection con = ConnectionManager.getConnection(db_url, uid, pwd)){
-        String SQL = "SELECT * FROM touristattraction WHERE aname = ? ;";
-        PreparedStatement pstmt = con.prepareStatement(SQL);
-        pstmt.setString(1, name);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            String NAME = rs.getString("ANAME");
-            String description = rs.getString("ADESCRIPTION");
-            touristAttraction = new TouristAttraction(name, description);
-        }
-        return touristAttraction;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            String SQL = "SELECT touristattraction.aname, touristattraction.adescription, tag.tdescription " +
+                    "from touristattaction_tags" +
+                    " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
+                    " join tag on touristattaction_tags.TAGSID = tag.TAGSID where aname = ?;";
+
+            Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+            try (PreparedStatement psts = con.prepareStatement(SQL)){
+                psts.setString(1, name);
+                ResultSet rs = psts.executeQuery(SQL);
+
+                String currentAname = "";
+
+                while(rs.next()) {
+                    String ANAME = rs.getString("ANAME");
+                    String ADESCRIPTION = rs.getString("ADESCRIPTION");
+                    String TDESCRIPTION = rs.getString("TDESCRIPTION");
+
+                    if (ANAME.equals(currentAname)){
+                        touristAttraction.addTag(TDESCRIPTION);
+                    } else {
+                        touristAttraction = new TouristAttraction(ANAME, ADESCRIPTION, new ArrayList<>(List.of(TDESCRIPTION)));
+                        currentAname = ANAME;
+                    }
+                }
+            }
+            catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+            return touristAttraction;
         }
 
 
@@ -54,7 +70,27 @@ public class TouristGuideRepositoryDB {
 
     public void deleteTouristAttraction(String name){}
 
-    public ArrayList<String> getTags(String name){ return null;}
+    public ArrayList<String> getTags(String name){
+        ArrayList<String> tags = new ArrayList<>();
+        String SQL = "SELECT tag.tdescription " +
+                "from touristattaction_tags" +
+                " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
+                " join tag on touristattaction_tags.TAGSID = tag.TAGSID where name = ?;";
+        Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+        try (PreparedStatement psts = con.prepareStatement(SQL)){
+        psts.setString(1, name);
+        ResultSet rs = psts.executeQuery();
+
+        while(rs.next()){
+            String TDESCRIPTION = rs.getString("TDESCRIPTION");
+            tags.add(TDESCRIPTION);
+        }
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return tags;
+    }
 
     public List<TouristAttraction> getTouristAttractions() {
         List<TouristAttraction> touristAttractions = new ArrayList<>();
