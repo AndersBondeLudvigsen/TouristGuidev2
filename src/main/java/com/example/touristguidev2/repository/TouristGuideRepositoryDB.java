@@ -25,6 +25,7 @@ public class TouristGuideRepositoryDB {
         return null;
     }
 
+
     public TouristAttraction getTouristAttraction(String name){
         TouristAttraction touristAttraction = null;
         try (Connection con = ConnectionManager.getConnection(db_url, uid, pwd)){
@@ -41,7 +42,7 @@ public class TouristGuideRepositoryDB {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+
 
     public TouristAttraction updateTouristAttraction(TouristAttraction touristAttractionUpdated) {
         int rows = 0;
