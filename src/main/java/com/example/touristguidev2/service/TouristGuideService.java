@@ -1,7 +1,6 @@
 package com.example.touristguidev2.service;
 
 import com.example.touristguidev2.model.TouristAttraction;
-import com.example.touristguidev2.repository.TouristGuideRepository;
 import com.example.touristguidev2.repository.TouristGuideRepositoryDB;
 import org.springframework.stereotype.Service;
 
