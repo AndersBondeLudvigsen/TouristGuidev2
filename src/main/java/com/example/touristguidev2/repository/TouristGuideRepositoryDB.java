@@ -76,9 +76,34 @@ public class TouristGuideRepositoryDB {
 
 
     public TouristAttraction updateTouristAttraction(TouristAttraction touristAttractionUpdated) {
-        int rows = 0;
-        String SQL = "UPDATE TOURISTATTRACTION SET touristattraction = ? WHERE ID = ? ;";
-        return null;
+        String SQLUPDATE = "UPDATE TOURISTATTRACTION SET ADESCRIPTION = ? WHERE ANAME = ?;";
+        String SQLDELETE = "DELETE FROM TOURISTATTACTION_TAGS WHERE TOURISTID = (SELECT TOURISTID FROM TOURISTATTRACTION WHERE ANAME = ?); ";
+        String SQLINSERT = "INSERT INTO TOURISTATTACTION_TAGS (TAGSID, TOURISTID) " +
+                "SELECT tag.tagsid, touristattraction.touristid " +
+                "FROM tag, touristattraction " +
+                "WHERE tag.tdescription = ? AND touristattraction.aname = ?;";
+        Connection con = ConnectionManager.getConnection(db_url, uid, pwd);
+        try (PreparedStatement updateAttractionStmt = con.prepareStatement(SQLUPDATE);
+             PreparedStatement deleteTagsStmt = con.prepareStatement(SQLDELETE);
+             PreparedStatement insertTagsStmt = con.prepareStatement(SQLINSERT)) {
+
+            updateAttractionStmt.setString(1, touristAttractionUpdated.getDescription());
+            updateAttractionStmt.setString(2, touristAttractionUpdated.getName());
+            updateAttractionStmt.executeUpdate();
+
+            deleteTagsStmt.setString(1, touristAttractionUpdated.getName());
+            deleteTagsStmt.executeUpdate();
+
+            for (String tag : touristAttractionUpdated.getTags()) {
+                insertTagsStmt.setString(1, tag);
+                insertTagsStmt.setString(2, touristAttractionUpdated.getName());
+                insertTagsStmt.executeUpdate();
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return touristAttractionUpdated;
     }
 
     public void addTouristAttraction (TouristAttraction touristAttraction){
@@ -116,8 +141,8 @@ public class TouristGuideRepositoryDB {
                 PreparedStatement psts2 = con.prepareStatement(SQL2)){
             psts1.setString(1,name);
             psts2.setString(1,name);
-            int rowsAffected1 = psts1.executeUpdate();
-            int rowsAffected2 = psts2.executeUpdate();
+             psts1.executeUpdate();
+             psts2.executeUpdate();
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
