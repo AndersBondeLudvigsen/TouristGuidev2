@@ -68,6 +68,7 @@ public class TouristGuideRepositoryDB {
 
     public void addTouristAttraction (TouristAttraction touristAttraction){
 
+
     }
 
     public void deleteTouristAttraction(String name) {
@@ -116,8 +117,8 @@ public class TouristGuideRepositoryDB {
                 " join touristattraction on touristattaction_tags.TOURISTID = touristattraction.TOURISTID" +
                 " join tag on touristattaction_tags.TAGSID = tag.TAGSID;";
         Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
-        try (PreparedStatement psts = con.prepareStatement(SQL)){
-            ResultSet rs = psts.executeQuery(SQL);
+        try (Statement statement = con.createStatement()){
+            ResultSet rs = statement.executeQuery(SQL);
 
             String currentAname = "";
             TouristAttraction currentTouristAttraction = null;
