@@ -71,6 +71,9 @@ public class TouristGuideRepositoryDB {
 
     }
 
+
+
+
     public void deleteTouristAttraction(String name) {
         String SQL1  = "DELETE FROM TOURISTATTACTION_TAGS WHERE TOURISTID = (SELECT TOURISTID FROM TOURISTATTRACTION WHERE ANAME = ?);";
         String SQL2 = "DELETE FROM TOURISTATTRACTION WHERE ANAME = ?;";
