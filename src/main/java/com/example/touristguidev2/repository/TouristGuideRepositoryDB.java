@@ -51,7 +51,7 @@ public class TouristGuideRepositoryDB {
             Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
             try (PreparedStatement psts = con.prepareStatement(SQL)){
                 psts.setString(1, name);
-                ResultSet rs = psts.executeQuery(SQL);
+                ResultSet rs = psts.executeQuery();
 
                 String currentAname = "";
 
