@@ -22,7 +22,22 @@ public class TouristGuideRepositoryDB {
     private String pwd;
 
     public List<String> getTagsList() {
-        return null;
+        List<String> tagsList = new ArrayList<>();
+        String SQL = "SELECT TDESCRIPTION FROM TAG;";
+        Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+        try {Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            while(rs.next()){
+                String TDESCRIPTION = rs.getString("TDESCRIPTION");
+                tagsList.add(TDESCRIPTION);
+            }
+
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return tagsList;
     }
 
 
@@ -67,8 +82,27 @@ public class TouristGuideRepositoryDB {
     }
 
     public void addTouristAttraction (TouristAttraction touristAttraction){
-
-
+        String SQL1 = "INSERT INTO TOURISTATTRACTION(ANAME, ADESCRIPTION) values (?,?);";
+        String SQL2 = "INSERT INTO TOURISTATTACTION_TAGS (TAGSID, TOURISTID) " +
+                "SELECT tag.tagsid, touristattraction.touristid " +
+                "FROM tag, touristattraction " +
+                "WHERE  tag.tdescription = ? " +
+                "AND touristattraction.aname = ?;";
+        Connection con = ConnectionManager.getConnection(db_url,uid,pwd);
+        try (PreparedStatement pstmt1 = con.prepareStatement(SQL1);
+        PreparedStatement pstmt2 = con.prepareStatement(SQL2)){
+            pstmt1.setString(1,touristAttraction.getName());
+            pstmt1.setString(2,touristAttraction.getDescription());
+            pstmt1.executeUpdate();
+            for (String tag:touristAttraction.getTags()) {
+                pstmt2.setString(1, tag);
+                pstmt2.setString(2, touristAttraction.getName());
+                pstmt2.executeUpdate();
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
 
